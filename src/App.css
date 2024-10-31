@@ -1,3 +1,13 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('./images/Earth.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+}
 .App {
   text-align: center;
 }
@@ -35,4 +45,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.app-title {
+    text-align: center;
+    margin: 20px 0;
 }
