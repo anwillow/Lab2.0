@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -11,7 +12,7 @@ const logoIcon = new L.Icon({
   popupAnchor: [0, -38],
 });
 
-const MapComponent = () => {
+const MapComponent = ({ darkMode }) => {
   const covidData = [
     { location: { lat: 40.7128, lng: -74.0060 }, cases: 5000, city: "New York" },
     { location: { lat: 34.0522, lng: -118.2437 }, cases: 3000, city: "Los Angeles" },
@@ -30,7 +31,11 @@ const MapComponent = () => {
       zoomControl: false,
     });
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    const tileLayerUrl = darkMode
+      ? 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
+      : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+
+    L.tileLayer(tileLayerUrl, {
       maxZoom: 18,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
@@ -41,17 +46,17 @@ const MapComponent = () => {
       zoomOutText: '−',
     });
     zoomControl.addTo(map);
-    
+
     covidData.forEach(data => {
-        console.log(`Adding marker for ${data.city} at ${data.location.lat}, ${data.location.lng}`);
-        const marker = L.marker(data.location, { icon: logoIcon }).addTo(map);
-        marker.bindPopup(`City: ${data.city}<br>Cases: ${data.cases}`);  
+      console.log(`Adding marker for ${data.city} at ${data.location.lat}, ${data.location.lng}`);
+      const marker = L.marker(data.location, { icon: logoIcon }).addTo(map);
+      marker.bindPopup(`City: ${data.city}<br>Cases: ${data.cases}`);
     });
 
     return () => {
       map.remove();
     };
-  }, []);
+  }, [darkMode]);
 
   return (
     <div id="map" style={{ height: '500px', width: '100%' }} />

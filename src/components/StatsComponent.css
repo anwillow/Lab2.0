@@ -1,3 +1,4 @@
+/* StatsComponent.css */
 .stats-container {
     background-color: #f9f9f9;
     border-radius: 8px;
@@ -37,4 +38,33 @@
 
 .stats-value:hover {
     color: #0056b3;
+}
+
+/* Dark Mode Styles */
+.dark-mode .stats-container {
+    background-color: #333333;
+    color: #cccccc;
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .stats-title {
+    color: #dddddd;
+}
+
+.dark-mode .stats-card {
+    background-color: #444444;
+    color: #eeeeee;
+    box-shadow: 0 1px 5px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .stats-card h3 {
+    color: #bbbbbb;
+}
+
+.dark-mode .stats-value {
+    color: #66b3ff;
+}
+
+.dark-mode .stats-value:hover {
+    color: #3399ff;
 }

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import MapComponent from './MapComponent';
 import StatsComponent from './StatsComponent';
+import InfectionChart from './InfectionChart';
+import './Dashboard.css';
 
-const Dashboard = () => {
+const Dashboard = ({ darkMode }) => {
   const [globalData, setGlobalData] = useState({});
   const [countriesData, setCountriesData] = useState([]);
 
@@ -18,9 +19,13 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div>
-      <StatsComponent data={globalData} />
-      <MapComponent countries={countriesData} />
+    <div className="dashboard">
+      <div className="dashboard-content">
+        <div className="chart-container">
+          <InfectionChart />
+        </div>
+        <StatsComponent data={globalData} />
+      </div>
     </div>
   );
 };
